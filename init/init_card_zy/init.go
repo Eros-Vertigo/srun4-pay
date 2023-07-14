@@ -10,6 +10,14 @@ import (
 	"time"
 )
 
+const (
+	CacheAccessToken = "srun4_pay:cache_access_token"
+)
+
+var (
+	Zy *ZyConfig
+)
+
 type ZyConfig struct {
 	Zhengyuan struct {
 		AppId     string `yaml:"app_id"`
@@ -18,6 +26,11 @@ type ZyConfig struct {
 		LogPath   string `yaml:"log_path"`
 		Port      string `yaml:"port" default:"8890"`
 	}
+}
+
+func init() {
+	Zy = &ZyConfig{}
+	Zy.LoadYaml()
 }
 
 // LoadYaml 加载「正元一卡通」配置

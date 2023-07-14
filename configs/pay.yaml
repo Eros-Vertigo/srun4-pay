@@ -2,6 +2,7 @@
 zhengyuan:
   app_id: "6AE31C199A8950AB08D648F25E8AF6D5"
   app_secret: "FF8B7C4BCA9B4C06E457D91A3FD3DC82"
-  api_url: "http://10.1.118.238:8080/easytong_app"
+#  api_url: "http://10.1.118.238:8080/easytong_app"
+  api_url: "https://192.168.0.191:8001/api/v2/auth/get-version"
   log_path: "runtime/card_zy"
   port: "8890"

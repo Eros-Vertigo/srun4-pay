@@ -1,4 +1,4 @@
-package init_card_zy
+package routers
 
 import (
 	"context"
@@ -8,11 +8,15 @@ import (
 	"os"
 	"os/signal"
 	"srun4-pay/init/common"
+	"srun4-pay/init/init_card_zy"
+	"srun4-pay/internal/app/card_zy/handlers"
+	"srun4-pay/internal/app/card_zy/middlewares"
 	"syscall"
 	"time"
 )
 
-func (c *ZyConfig) Routers() {
+func init() {
+	conf := init_card_zy.Zy
 	if *common.Mode == "prod" {
 		gin.SetMode(gin.ReleaseMode)
 	} else {
@@ -20,10 +24,11 @@ func (c *ZyConfig) Routers() {
 	}
 
 	r := gin.New()
-
+	r.Use(middlewares.Token())
+	r.GET("/test", handlers.Test)
 	// 创建HTTP服务器
 	server := &http.Server{
-		Addr:    fmt.Sprintf(":%s", c.Zhengyuan.Port),
+		Addr:    fmt.Sprintf(":%s", conf.Zhengyuan.Port),
 		Handler: r,
 	}
 
