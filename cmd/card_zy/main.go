@@ -9,4 +9,5 @@ import (
 func main() {
 	var Zy init_card_zy.ZyConfig
 	Zy.LoadYaml()
+	Zy.Routers()
 }

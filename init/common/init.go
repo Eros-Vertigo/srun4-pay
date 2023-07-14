@@ -2,7 +2,6 @@ package common
 
 import (
 	"flag"
-	"fmt"
 	"github.com/Eros-Vertigo/srun4-config/config"
 	format "github.com/antonfisher/nested-logrus-formatter"
 	"github.com/sirupsen/logrus"
@@ -26,9 +25,15 @@ func init() {
 	// 加载 srun|system conf
 	Conf, err = config.GetConfig("conf", *Mode)
 	if err != nil {
-		fmt.Println("Failed to load common conf:", err)
+		Log.Fatalf("Failed to load common conf:%s", err)
 		os.Exit(1)
 	}
+
+	Log.WithFields(logrus.Fields{
+		"srun.conf":   "加载成功",
+		"system.conf": "加载成功",
+	}).Info()
+
 	// 加载yaml文件
 	if *Mode == "prod" {
 		PayYaml = "/srun3/etc/srun4-pay/pay.yaml"
@@ -37,10 +42,10 @@ func init() {
 	}
 	PayConf, err = os.ReadFile(PayYaml)
 	if err != nil {
-		fmt.Printf("Read config [%s] failed::%s", PayYaml, err)
+		Log.Fatalf("Read Config [%s] failed:%s", PayYaml, err)
 		os.Exit(1)
 	}
-
+	Log.WithField("Pay配置", "加载成功")
 }
 
 // 初始化日志
@@ -54,8 +59,10 @@ func initLog() {
 	}
 
 	Log.SetFormatter(&format.Formatter{
-		HideKeys:        true,
+		HideKeys:        false,
 		TimestampFormat: time.RFC3339,
 		FieldsOrder:     []string{"component", "category"},
 	})
+
+	Log.WithField("Log组件", "加载成功").Info()
 }

@@ -4,3 +4,4 @@ zhengyuan:
   app_secret: "FF8B7C4BCA9B4C06E457D91A3FD3DC82"
   api_url: "http://10.1.118.238:8080/easytong_app"
   log_path: "runtime/card_zy"
+  port: "8890"
