@@ -25,7 +25,13 @@ func init() {
 
 	r := gin.New()
 	r.Use(middlewares.Token())
-	r.GET("/test", handlers.Test)
+
+	r.GET("/test", handlers.Test, middlewares.ErrMiddleware(), middlewares.SuccessMiddleware())
+	r.POST("preorder", handlers.Preorder,
+		middlewares.ErrMiddleware(),
+		middlewares.SuccessMiddleware(),
+		middlewares.OrderHandle(),
+	)
 	// 创建HTTP服务器
 	server := &http.Server{
 		Addr:    fmt.Sprintf(":%s", conf.Zhengyuan.Port),

@@ -11,7 +11,9 @@ import (
 )
 
 const (
-	CacheAccessToken = "srun4_pay:cache_access_token"
+	CacheAccessToken  = "srun4_pay:cache_access_token"
+	MethodPreOrder    = "/api/common/payservice/preorder"
+	MethodOrderHandle = "/api/common/payservice/orderhandle"
 )
 
 var (
@@ -20,11 +22,12 @@ var (
 
 type ZyConfig struct {
 	Zhengyuan struct {
-		AppId     string `yaml:"app_id"`
-		AppSecret string `yaml:"app_secret"`
-		ApiUrl    string `yaml:"api_url"`
-		LogPath   string `yaml:"log_path"`
-		Port      string `yaml:"port" default:"8890"`
+		AppId      string `yaml:"app_id"`
+		AppSecret  string `yaml:"app_secret"`
+		ApiUrl     string `yaml:"api_url"`
+		MerchantNo string `yaml:"merchant_no"`
+		LogPath    string `yaml:"log_path"`
+		Port       string `yaml:"port" default:"8890"`
 	}
 }
 

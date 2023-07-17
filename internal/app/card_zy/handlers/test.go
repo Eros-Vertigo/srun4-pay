@@ -6,5 +6,8 @@ import (
 )
 
 func Test(c *gin.Context) {
-	common.Log.WithField("test", "1").Info()
+	c.Set("msg", "成功")
+	c.Set("data", "asdasd")
+	c.Next()
+	common.Log.WithField("test", "handlers").Info()
 }
