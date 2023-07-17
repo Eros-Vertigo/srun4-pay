@@ -65,5 +65,9 @@ func getParams() {
 	decoder := json.NewDecoder(jsonData)
 	t := make(map[string]interface{})
 	err = decoder.Decode(&t)
+	if _, ok := t["data"]; !ok {
+		common.Log.WithField("获取北向接口授权失败", err).Error()
+		return
+	}
 
 }
