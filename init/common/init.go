@@ -2,9 +2,9 @@ package common
 
 import (
 	"flag"
-	"github.com/Eros-Vertigo/srun4-config/config"
 	format "github.com/antonfisher/nested-logrus-formatter"
 	"github.com/sirupsen/logrus"
+	"github.com/srun-soft/config/config"
 	"os"
 	"time"
 )

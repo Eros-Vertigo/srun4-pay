@@ -3,11 +3,11 @@ module srun4-pay
 go 1.19
 
 require (
-	github.com/Eros-Vertigo/srun4-config v1.0.6
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/sirupsen/logrus v1.9.3
+	github.com/srun-soft/config v1.0.0
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/driver/mysql v1.5.1
 	gorm.io/gorm v1.25.2
