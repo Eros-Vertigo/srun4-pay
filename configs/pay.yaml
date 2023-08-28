@@ -1,9 +1,4 @@
 ---
-zhengyuan:
-  app_id: "077220BA1CEEF5A033251965ABA7AE7A"
-  app_secret: "30E7F52C2699006B7319061508B24100"
-#  api_url: "http://10.0.1.58:8082/easytong_app"
-  api_url: "http://127.0.0.1:8003"
-  merchant_no: ""
-  log_path: "runtime/card_zy"
-  port: "8890"
+cert: "/srun3/etc/shanglian/cert.pem"
+pfx: "/srun3/etc/shanglian/cert.pfx"
+log_path: "runtime"

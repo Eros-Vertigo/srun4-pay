@@ -6,7 +6,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"srun4-pay/init/common"
+	"srun4-pay/configs"
 )
 
 var (
@@ -27,7 +27,7 @@ func init() {
 func Get(url string) ([]byte, error) {
 	resp, err := Client.Get(url)
 	if err != nil {
-		common.Log.WithField("HTTP GET ERROR", err).Error()
+		configs.Log.WithField("HTTP GET ERROR", err).Error()
 		return nil, err
 	}
 	defer func(Body io.ReadCloser) {
@@ -36,7 +36,7 @@ func Get(url string) ([]byte, error) {
 
 	res, err := io.ReadAll(resp.Body)
 	if err != nil {
-		common.Log.WithField("读取 GET Response 失败", err).Error()
+		configs.Log.WithField("读取 GET Response 失败", err).Error()
 		return nil, err
 	}
 	return res, nil
@@ -45,7 +45,7 @@ func Get(url string) ([]byte, error) {
 func Post(url string, params url.Values) ([]byte, error) {
 	resp, err := Client.PostForm(url, params)
 	if err != nil {
-		common.Log.WithField(fmt.Sprintf("HTTP POST[%s] ERROR", url), err).Error()
+		configs.Log.WithField(fmt.Sprintf("HTTP POST[%s] ERROR", url), err).Error()
 		return nil, err
 	}
 	defer func(Body io.ReadCloser) {
@@ -54,7 +54,7 @@ func Post(url string, params url.Values) ([]byte, error) {
 
 	res, err := io.ReadAll(resp.Body)
 	if err != nil {
-		common.Log.WithField("读取 POST Response 失败", err).Error()
+		configs.Log.WithField("读取 POST Response 失败", err).Error()
 		return nil, err
 	}
 	return res, nil

@@ -5,7 +5,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"srun4-pay/init/common"
+	"srun4-pay/configs"
 	"time"
 )
 
@@ -20,15 +20,15 @@ func GetDB() (*gorm.DB, error) {
 		return DB, nil
 	}
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
-		common.Conf.Username,
-		common.Conf.Password,
-		common.Conf.Hostname,
-		common.Conf.Port,
-		common.Conf.Dbname)
+		configs.Conf.Username,
+		configs.Conf.Password,
+		configs.Conf.Hostname,
+		configs.Conf.Port,
+		configs.Conf.Dbname)
 
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: logger.New(
-			common.Log,
+			configs.Log,
 			logger.Config{
 				SlowThreshold:             200 * time.Millisecond, // 慢查询阈值
 				LogLevel:                  logger.Error,           // 日志级别
@@ -38,9 +38,9 @@ func GetDB() (*gorm.DB, error) {
 		),
 	})
 	if err != nil {
-		common.Log.WithField("MySQL connect failed", err).Error()
+		configs.Log.WithField("MySQL connect failed", err).Error()
 		return nil, err
 	}
-	common.Log.WithField("MySQL connect", "Successful")
+	configs.Log.WithField("MySQL connect", "Successful")
 	return DB, nil
 }
