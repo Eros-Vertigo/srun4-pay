@@ -1,23 +1,37 @@
 package shanglian
 
+import "C"
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
+	apiConfig "github.com/srun-soft/api-sdk/configs"
+	"github.com/srun-soft/api-sdk/sdk"
 	"log"
 	"os"
 	"os/signal"
+	"srun4-pay/internal/app/shanglian/config"
+	"srun4-pay/internal/app/shanglian/middleware"
 	"syscall"
 )
 
 func Run() {
-	C = &Config{}
-	C.Load()
+	config.C = &config.Config{}
+	config.C.Load()
+
+	apiConfig.Config = &apiConfig.APIConfig{
+		Scheme:      fmt.Sprintf("%s://", config.C.Scheme),
+		InterfaceIP: fmt.Sprintf("%s:8001", config.C.InterfaceIP),
+		AppId:       config.C.AppId,
+		AppSecret:   config.C.AppSecret,
+	}
+	config.API = &sdk.APIClient{}
 
 	route := gin.Default()
 	//
 	v1 := route.Group("/v1")
 	{
-		v1.POST("/check", VerifySignature(), Check)
-		v1.POST("/notify", VerifySignature(), Notify)
+		v1.POST("/check", middleware.VerifySignature(), Check)
+		v1.POST("/notify", middleware.VerifySignature(), Notify)
 	}
 
 	// 启动服务

@@ -1,7 +1,8 @@
-package shanglian
+package config
 
 import (
 	"fmt"
+	"github.com/srun-soft/api-sdk/sdk"
 	"gopkg.in/yaml.v3"
 	"io"
 	"os"
@@ -9,6 +10,25 @@ import (
 	"srun4-pay/configs"
 	"time"
 )
+
+var (
+	C   *Config
+	API *sdk.APIClient
+)
+
+type Config struct {
+	Cert        string `yaml:"cert"`
+	Pfx         string `yaml:"pfx"`
+	PrivateKey  string `yaml:"private_key"`
+	ProductId   int    `yaml:"product_id"`
+	PayType     int    `yaml:"pay_type"`
+	PayTypeId   int    `yaml:"pay_type_id"`
+	InterfaceIP string `yaml:"interface_ip"`
+	AppId       string `yaml:"app_id"`
+	AppSecret   string `yaml:"app_secret"`
+	Scheme      string `yaml:"scheme"`
+	LogPath     string `yaml:"log_path"`
+}
 
 // Load 加载Yaml配置文件
 func (c *Config) Load() {

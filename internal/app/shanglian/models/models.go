@@ -1,4 +1,4 @@
-package shanglian
+package models
 
 import (
 	"github.com/shopspring/decimal"
@@ -6,23 +6,13 @@ import (
 
 // 结构体
 
-var (
-	C *Config
-)
-
-type Config struct {
-	Cert    string `yaml:"cert"`
-	Pfx     string `yaml:"pfx"`
-	LogPath string `yaml:"log_path"`
-}
-
 type BaseParam struct {
-	Version string `json:"version" default:"V1.0"`
-	Charset string `json:"charset"`
-	TradeNo string `json:"tradeNo"`
-	RechId  int    `json:"rechId"`
-	IntId   string `json:"intId"`
-	MerId   int    `json:"merId"`
+	Version string      `json:"version" default:"V1.0"`
+	Charset string      `json:"charset"`
+	TradeNo string      `json:"tradeNo"`
+	RechId  interface{} `json:"rechId"`
+	IntId   string      `json:"intId"`
+	MerId   int         `json:"merId"`
 }
 
 type Request struct {

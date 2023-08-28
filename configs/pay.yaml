@@ -1,4 +1,10 @@
 ---
-cert: "/srun3/etc/shanglian/cert.pem"
-pfx: "/srun3/etc/shanglian/cert.pfx"
+cert: "/srun3/etc/shanglian/shanglian_front.pem"
+pfx: "/srun3/etc/shanglian/shanglian_front.pfx"
+private_key: "corp2wsx"
+product_id: 1
+scheme: "https"
+interface_ip: "192.168.0.191"
+app_id: "srunsoft"
+app_secret: "ba62f23e6212790052f387ee7af2943e4cfcece0"
 log_path: "runtime"

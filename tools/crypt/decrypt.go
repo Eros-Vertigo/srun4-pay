@@ -4,7 +4,7 @@ import (
 	"crypto/cipher"
 	"crypto/des"
 	"encoding/base64"
-	"fmt"
+	"srun4-pay/configs"
 )
 
 // Decrypt 解密给定的加密字符串
@@ -23,7 +23,7 @@ func Decrypt(encrypted, key string) ([]byte, error) {
 	// 去除 PKCS5 填充
 	decrypted = pkcs5Unpad(decrypted)
 
-	fmt.Println("解密结果:", string(decrypted))
+	configs.Log.Info("解密结果:", string(decrypted))
 
 	return decrypted, nil
 }
