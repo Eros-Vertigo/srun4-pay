@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/go-redis/redis/v8"
-	"srun4-pay/configs"
+	"github.com/srun-soft/pay/configs"
 	"sync"
 	"time"
 )

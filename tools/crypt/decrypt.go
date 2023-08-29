@@ -4,7 +4,7 @@ import (
 	"crypto/cipher"
 	"crypto/des"
 	"encoding/base64"
-	"srun4-pay/configs"
+	"github.com/srun-soft/pay/configs"
 )
 
 // Decrypt 解密给定的加密字符串

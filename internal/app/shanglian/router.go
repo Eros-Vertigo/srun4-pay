@@ -1,16 +1,15 @@
 package shanglian
 
-import "C"
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	apiConfig "github.com/srun-soft/api-sdk/configs"
 	"github.com/srun-soft/api-sdk/sdk"
+	"github.com/srun-soft/pay/internal/app/shanglian/config"
+	"github.com/srun-soft/pay/internal/app/shanglian/middleware"
 	"log"
 	"os"
 	"os/signal"
-	"srun4-pay/internal/app/shanglian/config"
-	"srun4-pay/internal/app/shanglian/middleware"
 	"syscall"
 )
 

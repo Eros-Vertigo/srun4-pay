@@ -3,11 +3,11 @@ package config
 import (
 	"fmt"
 	"github.com/srun-soft/api-sdk/sdk"
+	"github.com/srun-soft/pay/configs"
 	"gopkg.in/yaml.v3"
 	"io"
 	"os"
 	"path/filepath"
-	"srun4-pay/configs"
 	"time"
 )
 

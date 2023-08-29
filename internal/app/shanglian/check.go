@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
+	"github.com/srun-soft/pay/configs"
+	"github.com/srun-soft/pay/internal/app/shanglian/config"
+	"github.com/srun-soft/pay/internal/app/shanglian/models"
+	"github.com/srun-soft/pay/internal/database"
+	"github.com/srun-soft/pay/tools/crypt"
 	"net/http"
-	"srun4-pay/configs"
-	"srun4-pay/internal/app/shanglian/config"
-	"srun4-pay/internal/app/shanglian/models"
-	"srun4-pay/internal/database"
-	"srun4-pay/tools/crypt"
 	"time"
 )
 

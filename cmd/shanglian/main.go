@@ -1,8 +1,8 @@
 package main
 
 import (
-	_ "srun4-pay/configs"
-	"srun4-pay/internal/app/shanglian"
+	_ "github.com/srun-soft/pay/configs"
+	"github.com/srun-soft/pay/internal/app/shanglian"
 )
 
 func main() {

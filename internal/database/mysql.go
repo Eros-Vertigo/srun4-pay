@@ -2,10 +2,10 @@ package database
 
 import (
 	"fmt"
+	"github.com/srun-soft/pay/configs"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"srun4-pay/configs"
 	"time"
 )
 

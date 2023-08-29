@@ -3,11 +3,11 @@ package middleware
 import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
+	"github.com/srun-soft/pay/configs"
+	"github.com/srun-soft/pay/internal/app/shanglian/config"
+	"github.com/srun-soft/pay/internal/app/shanglian/models"
+	crypt2 "github.com/srun-soft/pay/tools/crypt"
 	"net/http"
-	"srun4-pay/configs"
-	"srun4-pay/internal/app/shanglian/config"
-	"srun4-pay/internal/app/shanglian/models"
-	crypt2 "srun4-pay/tools/crypt"
 )
 
 // 验证
