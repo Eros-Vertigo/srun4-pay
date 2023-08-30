@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	apiConfig "github.com/srun-soft/api-sdk/configs"
 	"github.com/srun-soft/api-sdk/sdk"
+	"github.com/srun-soft/pay/configs"
 	"github.com/srun-soft/pay/internal/app/shanglian/config"
 	"github.com/srun-soft/pay/internal/app/shanglian/middleware"
 	"log"
@@ -25,6 +26,11 @@ func Run() {
 	}
 	config.API = &sdk.APIClient{}
 
+	if *configs.Mode == "prod" {
+		gin.SetMode(gin.ReleaseMode)
+	} else {
+		gin.SetMode(gin.DebugMode)
+	}
 	route := gin.Default()
 	//
 	v1 := route.Group("/v1")

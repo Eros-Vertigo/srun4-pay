@@ -40,7 +40,7 @@ func Check(c *gin.Context) {
 		return
 	}
 	// 查询产品
-	cmd := database.Rdb16382.HGet(database.Rdb16382.Context(), fmt.Sprintf("hash:users:%d", user.UserId), "products_id")
+	cmd := database.Rdb16382.HGet(database.Rdb16382.Context(), fmt.Sprintf("hash:users:products:%d:%d", user.UserId, config.C.ProductId), "products_id")
 	if cmd.Err() != nil {
 		if cmd.Err() == redis.Nil {
 			configs.Log.Error("未查询到用户绑定产品")

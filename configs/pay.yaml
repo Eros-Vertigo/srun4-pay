@@ -2,7 +2,7 @@
 cert: "/srun3/etc/shanglian/shanglian_front.pem"
 pfx: "/srun3/etc/shanglian/shanglian_front.pfx"
 private_key: "corp2wsx"
-product_id: 1
+product_id: 3
 scheme: "https"
 interface_ip: "192.168.0.191"
 app_id: "srunsoft"
