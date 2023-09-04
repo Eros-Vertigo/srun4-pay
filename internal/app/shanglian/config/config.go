@@ -28,6 +28,7 @@ type Config struct {
 	AppSecret   string `yaml:"app_secret"`
 	Scheme      string `yaml:"scheme"`
 	LogPath     string `yaml:"log_path"`
+	Port        string `yaml:"port"`
 }
 
 // Load 加载Yaml配置文件

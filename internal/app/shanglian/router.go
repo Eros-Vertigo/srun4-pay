@@ -41,7 +41,7 @@ func Run() {
 
 	// 启动服务
 	go func() {
-		err := route.Run(":8890")
+		err := route.Run(fmt.Sprintf(":%s", config.C.Port))
 		if err != nil {
 			log.Fatalf("Failed to start server: %s", err.Error())
 		}

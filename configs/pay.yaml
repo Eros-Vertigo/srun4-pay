@@ -8,3 +8,6 @@ interface_ip: "192.168.0.191"
 app_id: "srunsoft"
 app_secret: "ba62f23e6212790052f387ee7af2943e4cfcece0"
 log_path: "runtime"
+port: "8890"
+pay_type: 9
+pay_type_id: 103
