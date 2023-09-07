@@ -46,6 +46,7 @@ type BaseRes struct {
 	DeviceId   string     `json:"deviceId"`
 	Detail     string     `json:"detail"`
 	DeviceInfo DeviceInfo `json:"deviceInfo"`
+	BillFlag   int        `json:"billFlag"`
 }
 
 type NotifyRes struct {

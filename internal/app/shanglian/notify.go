@@ -71,6 +71,7 @@ func Notify(c *gin.Context) {
 			TradeTime:  time.Now().Format("20060102150405"),
 			DeviceId:   strDes.DeviceId,
 			Detail:     "充值结果通知回执",
+			BillFlag:   0,
 		},
 		ThirdResult: "S",
 	}

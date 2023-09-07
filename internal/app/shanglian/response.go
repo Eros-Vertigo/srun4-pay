@@ -33,6 +33,7 @@ func Error(msg string, c *gin.Context) {
 				},
 			},
 		},
+		BillFlag: 0,
 	}
 	jsonData, _ := json.Marshal(errRes)
 	configs.Log.WithField("返回错误响应", errRes.ResultMsg).Info()

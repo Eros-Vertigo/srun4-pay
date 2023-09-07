@@ -73,6 +73,7 @@ func Check(c *gin.Context) {
 				},
 			},
 		},
+		BillFlag: 0,
 	}
 	jsonData, _ := json.Marshal(baseRes)
 	configs.Log.Debug("响应数据", baseRes)
