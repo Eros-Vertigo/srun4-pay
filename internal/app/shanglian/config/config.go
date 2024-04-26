@@ -29,6 +29,9 @@ type Config struct {
 	Scheme      string `yaml:"scheme"`
 	LogPath     string `yaml:"log_path"`
 	Port        string `yaml:"port"`
+	TLSPem      string `yaml:"tls_pem"`
+	TLSKey      string `yaml:"tls_key"`
+	IsHttps     bool   `yaml:"is_https"`
 }
 
 // Load 加载Yaml配置文件
