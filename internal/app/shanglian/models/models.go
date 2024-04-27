@@ -12,7 +12,7 @@ type BaseParam struct {
 	TradeNo string      `json:"tradeNo"`
 	RechId  interface{} `json:"rechId"`
 	IntId   string      `json:"intId"`
-	MerId   int         `json:"merId"`
+	MerId   interface{} `json:"merId"`
 }
 
 type Request struct {
