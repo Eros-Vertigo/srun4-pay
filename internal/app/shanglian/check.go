@@ -2,6 +2,7 @@ package shanglian
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
@@ -40,16 +41,21 @@ func Check(c *gin.Context) {
 		return
 	}
 	// 查询产品
-	cmd := database.Rdb16382.HGet(database.Rdb16382.Context(), fmt.Sprintf("hash:users:products:%d:%d", user.UserId, config.C.ProductId), "products_id")
+	cmd := database.Rdb16382.HGet(database.Rdb16382.Context(), fmt.Sprintf("hash:users:%d", user.UserId), "products_id")
 	if cmd.Err() != nil {
-		if cmd.Err() == redis.Nil {
+		if errors.Is(cmd.Err(), redis.Nil) {
 			configs.Log.Error("未查询到用户绑定产品")
 			Error("未查询到用户绑定产品", c)
-			return
 		} else {
 			configs.Log.Error("查询用户产品发生错误", cmd.Err())
 			Error("查询用户产品发生错误", c)
 		}
+		return
+	}
+	productName, err := database.Rdb16382.HGet(database.Rdb16382.Context(), fmt.Sprintf("hash:products:%s", cmd.Val()), "products_name").Result()
+	if err != nil {
+		configs.Log.Error("查询产品名称发生错误", err)
+		Error("查询产品名称发生错误", c)
 		return
 	}
 
@@ -70,6 +76,16 @@ func Check(c *gin.Context) {
 					Key:      "balance",
 					KeyName:  "余额",
 					KeyValue: user.Balance,
+				},
+				{
+					Key:      "product",
+					KeyName:  "产品ID",
+					KeyValue: cmd.Val(),
+				},
+				{
+					Key:      "products_name",
+					KeyName:  "产品名称",
+					KeyValue: productName,
 				},
 			},
 		},
