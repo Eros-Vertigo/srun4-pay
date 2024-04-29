@@ -27,12 +27,24 @@ func Notify(c *gin.Context) {
 	baseParam := bp.(models.Request)
 	sd, _ := c.Get("strDes")
 	strDes := sd.(models.StrDes)
+
+	// find user
+	userID := database.Rdb16382.Get(database.Rdb16382.Context(), fmt.Sprintf("key:users:user_name:%s", strDes.DeviceId)).Val()
+	// 查询产品
+	cmd := database.Rdb16382.HGet(database.Rdb16382.Context(), fmt.Sprintf("hash:users:%s", userID), "products_id").Val()
+	ProductID, err := strconv.Atoi(cmd)
+	if err != nil {
+		configs.Log.Error("获取产品ID 失败", err)
+		Error("获取产品ID 失败", c)
+		return
+	}
+
 	// 创建alipay订单
 	alipay := models.Alipay{
 		UserName:   strDes.DeviceId,
 		OutTradeNo: baseParam.TradeNo,
 		Money:      strDes.Amount,
-		Type:       config.C.ProductId,
+		Type:       ProductID,
 		BuyTime:    int(time.Now().Unix()),
 		Status:     strconv.Itoa(1),
 		Payment:    strDes.DeviceId,
@@ -112,7 +124,7 @@ func getToken(db *gorm.DB) (string, error) {
 func rechargeV1(a *models.Alipay, token string) bool {
 	data := url.Values{}
 	data.Set("user_name", a.UserName)
-	data.Set("pay_type_id", strconv.Itoa(103))
+	data.Set("pay_type_id", strconv.Itoa(config.C.PayTypeId))
 	data.Set("order_no", a.TradeNo)
 	data.Set("pay_num", fmt.Sprintf("%v", a.Money))
 	data.Set("amount", fmt.Sprintf("%v", a.Money))
