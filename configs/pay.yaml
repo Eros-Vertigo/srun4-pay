@@ -1,7 +1,7 @@
 ---
-cert: "/srun3/etc/shanglian/shanglian_front.pem"
-pfx: "/srun3/etc/shanglian/shanglian_front.pfx"
-private_key: "corp2wsx"
+cert: "/Users/yuantong/Documents/定制项目/中央民族大学/shanglian_front.pem"
+pfx: "/Users/yuantong/Documents/定制项目/中央民族大学/shanglian_front.pfx"
+private_key: "12345678"
 product_id: 3
 scheme: "https"
 interface_ip: "192.168.0.191"
@@ -13,4 +13,4 @@ pay_type: 9
 pay_type_id: 103
 tls_pem: "/Users/yuantong/Documents/证书/12574526_yuantong.pro_nginx/yuantong.pro.pem"
 tls_key: "/Users/yuantong/Documents/证书/12574526_yuantong.pro_nginx/yuantong.pro.key"
-is_https: true
+is_https: false

@@ -12,6 +12,7 @@ import (
 	"github.com/srun-soft/pay/internal/database"
 	"github.com/srun-soft/pay/tools/crypt"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -59,6 +60,15 @@ func Check(c *gin.Context) {
 		return
 	}
 
+	productBalance, err := database.Rdb16382.HGet(database.Rdb16382.Context(), fmt.Sprintf("hash:users:products:%d:%s", user.UserId, cmd.Val()), "user_balance").Result()
+	if err != nil {
+		configs.Log.Error("查询产品余额发生错误", err)
+		Error("查询产品余额发生错误", c)
+		return
+	}
+
+	balance, _ := strconv.ParseFloat(productBalance, 64)
+
 	// 组装加密数据
 	baseRes := &models.BaseRes{
 		ResultCode: "000000",
@@ -69,24 +79,29 @@ func Check(c *gin.Context) {
 		DeviceInfo: models.DeviceInfo{
 			NameTitle: "用户名",
 			NameValue: user.UserName,
-			UnitTitle: "真实姓名",
+			UnitTitle: "姓名",
 			UnitValue: user.UserRealName,
 			Infos: []models.Info{
 				{
 					Key:      "balance",
 					KeyName:  "余额",
-					KeyValue: user.Balance,
+					KeyValue: fmt.Sprintf("%.2f", balance),
 				},
-				{
-					Key:      "product",
-					KeyName:  "产品ID",
-					KeyValue: cmd.Val(),
-				},
+				//{
+				//	Key:      "product",
+				//	KeyName:  "产品ID",
+				//	KeyValue: cmd.Val(),
+				//},
 				{
 					Key:      "products_name",
 					KeyName:  "产品名称",
 					KeyValue: productName,
 				},
+				//{
+				//	Key:      "products_balance",
+				//	KeyName:  "产品余额",
+				//	KeyValue: fmt.Sprintf("%.2f", balance),
+				//},
 			},
 		},
 		BillFlag: 0,
